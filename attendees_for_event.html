@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Attendees for Event</h2>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for a in attendees %}
+    <tr>
+      <td>{{ a.name }}</td>
+      <td>{{ a.email }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<a href="{{ url_for('index') }}" class="btn btn-primary">Back to Dashboard</a>
+{% endblock %}

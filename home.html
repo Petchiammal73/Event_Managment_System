@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="home-hero" style="background:none; padding:40px 20px; text-align:center;">
+    <h1>Welcome to Event Management System</h1>
+    <p>Plan, organize, and manage your events with ease and style.</p>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">Go to Dashboard</a>
+</div>
+
+<div class="home-sections">
+    <div class="home-card">
+        <h3>📅 Manage Events</h3>
+        <p>Create and update events seamlessly with real-time tracking.</p>
+    </div>
+    <div class="home-card">
+        <h3>👥 Track Attendees</h3>
+        <p>Manage attendee details and event participation efficiently.</p>
+    </div>
+    <div class="home-card">
+        <h3>🎟️ Sell Tickets</h3>
+        <p>Generate reports and monitor ticket sales professionally.</p>
+    </div>
+</div>
+
+{% endblock %}

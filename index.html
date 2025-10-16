@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Event Dashboard</h2>
+
+<form method="get" class="row g-3 mb-3">
+    <div class="col-md-5">
+        <input type="text" name="title" class="form-control" placeholder="Search by Title" value="{{ search_title }}">
+    </div>
+    <div class="col-md-4">
+        <input type="date" name="date" class="form-control" value="{{ search_date }}">
+    </div>
+    <div class="col-md-3">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="{{ url_for('index') }}" class="btn btn-secondary">Reset</a>
+    </div>
+</form>
+<br>
+<table>
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th>Tickets Sold</th>
+            <th>Tickets Available</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for event in events %}
+        <tr>
+            <td>{{ event.event_date }}</td>
+            <td>{{ event.title }}</td>
+            <td>{{ event.location }}</td>
+            <td>{{ event.capacity }}</td>
+            <td>{{ event.tickets_sold }}</td>
+            <td>{{ event.capacity - event.tickets_sold }}</td>
+            <td>
+                <a href="{{ url_for('edit_event_page', event_id=event.id) }}" class="btn btn-primary btn-sm">✏️ Edit</a>
+                <a href="{{ url_for('delete_event', event_id=event.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Delete this event?')">🗑️ Delete</a>
+                <a href="{{ url_for('view_attendees', event_id=event.id) }}" class="btn btn-secondary btn-sm">👤 Attendees</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

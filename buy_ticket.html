@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Buy Ticket for "{{ event.title }}"</h2>
+<br>
+<p>
+  Date: {{ event.event_date }} |
+  Location: {{ event.location }} |
+  Capacity: {{ event.capacity }}
+</p>
+<br>
+<form method="POST">
+  <label>Name</label>
+  <input type="text" name="name" required><br>
+
+  <label>Email</label>
+  <input type="email" name="email" required><br>
+
+  <button type="submit" class="btn btn-primary">Book Ticket</button>
+  <a href="{{ url_for('tickets_page') }}" class="btn btn-secondary" style="margin-top:10px;">Back</a>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add New Event</h2>
+<br>
+<form action="{{ url_for('add_event') }}" method="POST">
+  <label>Title:</label>
+  <input type="text" name="title" required>
+
+  <label>Description:</label>
+  <textarea name="description"></textarea>
+
+  <label>Date:</label>
+  <input type="date" name="event_date" required>
+
+  <label>Location:</label>
+  <input type="text" name="location" required>
+
+  <label>Capacity:</label>
+  <input type="number" name="capacity" required>
+
+  <label for="ticket_price">Ticket Price:</label>
+  <input type="number" step="0.01" name="ticket_price" id="ticket_price"
+         value="{{ event.ticket_price if event else '' }}" required>
+
+  <button type="submit" class="btn btn-primary">Add Event</button>
+  <button type="reset" class="btn btn-secondary">Reset</button>
+</form>
+{% endblock %}

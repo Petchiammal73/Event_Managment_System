@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Ticket Sales Report</h2>
+<br>
+
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Date</th>
+            <th>Location</th>
+            <th>Capacity</th>
+            <th>Tickets Sold</th>
+            <th>Tickets Available</th>
+            <th>Ticket Price</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for ticket in tickets %}
+        <tr>
+            <td>{{ ticket.title }}</td>
+            <td>{{ ticket.event_date.strftime('%Y-%m-%d') if ticket.event_date else 'N/A' }}</td>
+            <td>{{ ticket.location }}</td>
+            <td>{{ ticket.capacity }}</td>
+            <td>{{ ticket.tickets_sold }}</td>
+            <td>{{ ticket.tickets_available }}</td>
+            <td>{{ "%.2f"|format(ticket.ticket_price if ticket.ticket_price else 0) }}</td>
+            <td>
+                {% if ticket.tickets_available > 0 %}
+                    <a href="{{ url_for('buy_ticket', event_id=ticket.id) }}" class="btn btn-primary btn-sm">Buy Ticket</a>
+                {% else %}
+                    Sold Out
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br>
+<a href="{{ url_for('export_ticket_report') }}" class="btn btn-primary">Export Ticket Report</a>
+
+{% endblock %}
